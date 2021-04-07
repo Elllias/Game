@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arena.Models", "Arena.Models\Arena.Models.csproj", "{248DAEC4-6DAA-463E-823B-3D224F01FA99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{248DAEC4-6DAA-463E-823B-3D224F01FA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248DAEC4-6DAA-463E-823B-3D224F01FA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248DAEC4-6DAA-463E-823B-3D224F01FA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248DAEC4-6DAA-463E-823B-3D224F01FA99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBBBF3CA-D5B5-4DB7-BF70-8E19D83931C7}
+	EndGlobalSection
+EndGlobal
