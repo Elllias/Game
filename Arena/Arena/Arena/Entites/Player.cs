@@ -30,8 +30,8 @@ namespace Arena.Entites
             DeathFrames = deathFrames;
             Sprite = sprite;
             // Размеры всех спрайтов
-            SizeX = 26;
-            SizeY = 49;
+            SizeX = 100;
+            SizeY = 135;
         }
 
         public void Move(int dX, int dY)

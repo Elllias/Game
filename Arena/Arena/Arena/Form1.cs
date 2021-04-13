@@ -7,7 +7,7 @@ namespace Arena
 {
     public partial class Form1 : Form
     {
-        public Image Woodcutter;
+        public Image HeroIcon;
         Player player;
 
         public Form1()
@@ -18,8 +18,8 @@ namespace Arena
 
         public void Initialize()
         {
-            Woodcutter = new Bitmap(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "Sprites\\Woodcutter\\woodcutter.png"));
-            player = new Player(150, 150, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, Woodcutter);
+            HeroIcon = new Bitmap(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "Sprites\\Hero\\hero.png"));
+            player = new Player(10, 10, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, HeroIcon);
 
             Invalidate();
         }
@@ -29,8 +29,8 @@ namespace Arena
             Graphics graphics = e.Graphics;
 
             graphics.DrawImage(player.Sprite,
-                new Rectangle(new Point(player.PosX, player.PosY), new Size(player.SizeX,player.SizeY)),
-                0, 0, player.SizeX, player.SizeY, GraphicsUnit.Pixel); // Чисто ради интереса отрисовал)) Забавно
+                new Rectangle(new Point(player.PosX, player.PosY), new Size(player.SizeX, player.SizeY)),
+                0, 0, player.SizeX, player.SizeY, GraphicsUnit.Point); // Чисто ради интереса отрисовал)) Забавно
         }
     }
 }

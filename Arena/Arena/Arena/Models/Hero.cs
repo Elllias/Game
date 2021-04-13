@@ -8,9 +8,9 @@ namespace Arena.Entites
 {
     public static class Hero
     {
-        public static int IdleFrames = 4;
-        public static int RunFrames = 6;
-        public static int AttackFrames = 6;
-        public static int DeathFrames = 6;
+        public static int IdleFrames = 5;
+        public static int RunFrames = 7;
+        public static int AttackFrames = 7;
+        public static int DeathFrames = 8;
     }
 }
