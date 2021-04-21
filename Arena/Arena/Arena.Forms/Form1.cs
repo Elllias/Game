@@ -15,7 +15,7 @@ namespace Arena
 		{
 			InitializeComponent();
 
-			timer1.Interval = 10;
+			timer1.Interval = 20;
 			timer1.Tick += new EventHandler(Update);
 			KeyDown += new KeyEventHandler(OnKeyDown);
 			KeyUp += new KeyEventHandler(OnKeyUp);
