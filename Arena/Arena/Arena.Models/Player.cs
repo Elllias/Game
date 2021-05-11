@@ -43,7 +43,7 @@ namespace Arena.Models
             CurAnimation = 0;
             CurFrame = 0;
             // Размеры всех спрайтов
-            size = 100;
+            size = 50;
         }
 
         public void Move()
@@ -59,16 +59,16 @@ namespace Arena.Models
             switch (curAnimation)
             {
                 case 0:
-                    CurLimit = Hero.IdleFrames;
+                    CurLimit = this.IdleFrames;
                     break;
                 case 1:
-                    CurLimit = Hero.RunFrames;
+                    CurLimit = this.RunFrames;
                     break;
                 case 2:
-                    CurLimit = Hero.AttackFrames;
+                    CurLimit = this.AttackFrames;
                     break;
                 case 4:
-                    CurLimit = Hero.DeathFrames;
+                    CurLimit = this.DeathFrames;
                     break;
             }
         }
