@@ -26,7 +26,7 @@ namespace Arena.Models
         public int RunFrames;
         public int AttackFrames;
         public int DeathFrames;
-        public int size;
+        public int Size;
 
         public Player(int posX, int posY, int idleFrames, int runFrames, int attackFrames, int deathFrames, Image sprite)
         {
@@ -39,11 +39,11 @@ namespace Arena.Models
             Sprite = sprite;
             CurLimit = idleFrames;
             Speed = 3;
-            Flip = 1;
             CurAnimation = 0;
             CurFrame = 0;
+            Flip = 1;
             // Размеры всех спрайтов
-            size = 50;
+            Size = 50;
         }
 
         public void Move()
@@ -67,9 +67,22 @@ namespace Arena.Models
                 case 2:
                     CurLimit = this.AttackFrames;
                     break;
-                case 4:
+                case 3:
                     CurLimit = this.DeathFrames;
                     break;
+                case 4:
+                    CurLimit = this.IdleFrames;
+                    break;
+                case 5:
+                    CurLimit = this.RunFrames;
+                    break;
+                case 6:
+                    CurLimit = this.AttackFrames;
+                    break;
+                case 7:
+                    CurLimit = this.DeathFrames;
+                    break;
+
             }
         }
     }
