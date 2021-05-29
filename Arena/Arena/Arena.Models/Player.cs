@@ -33,10 +33,10 @@ namespace Arena.Models
         public Element CurElement;
         public enum Element
         {
-            Fire = 1,
-            Earth = 2,
-            Electricity = 3,
-            Water = 4
+            Fire,
+            Earth,
+            Electricity,
+            Water
         }
 
         public Player(int posX, int posY, int idleFrames, int runFrames, int attackFrames, int deathFrames, Image sprite)
@@ -156,7 +156,7 @@ namespace Arena.Models
             this.SetAnimationConfiguration(3);
         }
 
-        public bool IsWeak(Player enemy)
+        public bool IsStronger(Player enemy)
         {
             switch (CurElement)
             {

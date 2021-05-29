@@ -19,19 +19,22 @@ namespace Arena
 			timer1.Tick += new EventHandler(Update);
 			KeyDown += new KeyEventHandler(OnKeyDown);
 			KeyUp += new KeyEventHandler(OnKeyUp);
+			pictureBox1.BackColor = Color.Transparent;
+			pictureBox2.BackColor = Color.Transparent;
 
 			Initialize();
 		}
 
 		public void Initialize()
 		{
-			//progressBar1
 			Map.Init();
 			this.Width = Map.CellSize * Map.MapWidth+15;
 			this.Height = Map.CellSize * (Map.MapHeight+1)+8;
+			labelPlayer.Text = "Fire";
+			labelEnemy.Text = "Fire";
 
-			player = new Player(150, 270, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, Hero.Icon);
-			enemy = new Player(200, 270, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
+			player = new Player(130, 370, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, Hero.Icon);
+			enemy = new Player(1070, 420, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
 
 			timer1.Start();
 		}
@@ -120,7 +123,7 @@ namespace Arena
 						player.Flip = 1;
 						break;
 					case Keys.Space:
-						if (player.IsCollide(enemy) && player.IsWeak(enemy))
+						if (player.IsCollide(enemy) && player.IsStronger(enemy))
 							enemy.GetDamage();
 						player.dX = 0;
 						player.dY = 0;
@@ -131,15 +134,19 @@ namespace Arena
                         break;
                     case Keys.F:
 						player.CurElement = Player.Element.Fire;
+						labelPlayer.Text = "Fire";
 						break;
 					case Keys.G:
 						player.CurElement = Player.Element.Earth;
+						labelPlayer.Text = "Earth";
 						break;
 					case Keys.H:
 						player.CurElement = Player.Element.Electricity;
+						labelPlayer.Text = "Electricity";
 						break;
 					case Keys.J:
 						player.CurElement = Player.Element.Water;
+						labelPlayer.Text = "Water";
 						break;
 
 				}
@@ -178,7 +185,7 @@ namespace Arena
 						enemy.Flip = 1;
 						break;
 					case Keys.Enter:
-						if (player.IsCollide(enemy) && enemy.IsWeak(player))
+						if (player.IsCollide(enemy) && enemy.IsStronger(player))
 							player.GetDamage();
 						enemy.dX = 0;
 						enemy.dY = 0;
@@ -189,15 +196,19 @@ namespace Arena
 						break;
 					case Keys.NumPad0:
 						enemy.CurElement = Player.Element.Fire;
+						labelEnemy.Text = "Fire";
 						break;
 					case Keys.NumPad1:
 						enemy.CurElement = Player.Element.Earth;
+						labelEnemy.Text = "Earth";
 						break;
 					case Keys.NumPad2:
 						enemy.CurElement = Player.Element.Electricity;
+						labelEnemy.Text = "Electricity";
 						break;
 					case Keys.NumPad3:
 						enemy.CurElement = Player.Element.Water;
+						labelEnemy.Text = "Water";
 						break;
 				}
 			}
@@ -207,6 +218,7 @@ namespace Arena
 		{
 			player.Move();
 			enemy.Move();
+
 
 			if (player.HP <= 100 && player.HP >= 0)
 				HPPlayerBar.Value = player.HP;
@@ -317,5 +329,10 @@ namespace Arena
 			Map.MapThings.Add(new Thing(new Point(j * Map.CellSize, i * Map.CellSize), new Size(s1, s2)));
 
 		}
+
+        private void HPPlayerBar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
