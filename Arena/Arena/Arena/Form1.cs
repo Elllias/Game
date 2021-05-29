@@ -120,7 +120,7 @@ namespace Arena
 						player.Flip = 1;
 						break;
 					case Keys.Space:
-						if (player.IsCollide(enemy))
+						if (player.IsCollide(enemy) && player.IsWeak(enemy))
 							enemy.GetDamage();
 						player.dX = 0;
 						player.dY = 0;
@@ -128,9 +128,22 @@ namespace Arena
 							player.SetAnimationConfiguration(2);
 						else
 							player.SetAnimationConfiguration(6);
+                        break;
+                    case Keys.F:
+						player.CurElement = Player.Element.Fire;
 						break;
+					case Keys.G:
+						player.CurElement = Player.Element.Earth;
+						break;
+					case Keys.H:
+						player.CurElement = Player.Element.Electricity;
+						break;
+					case Keys.J:
+						player.CurElement = Player.Element.Water;
+						break;
+
 				}
-			}
+            }
 
 			if (enemy.IsAlive)
 			{
@@ -165,7 +178,7 @@ namespace Arena
 						enemy.Flip = 1;
 						break;
 					case Keys.Enter:
-						if (player.IsCollide(enemy))
+						if (player.IsCollide(enemy) && enemy.IsWeak(player))
 							player.GetDamage();
 						enemy.dX = 0;
 						enemy.dY = 0;
@@ -173,6 +186,18 @@ namespace Arena
 							enemy.SetAnimationConfiguration(2);
 						else
 							enemy.SetAnimationConfiguration(6);
+						break;
+					case Keys.NumPad0:
+						enemy.CurElement = Player.Element.Fire;
+						break;
+					case Keys.NumPad1:
+						enemy.CurElement = Player.Element.Earth;
+						break;
+					case Keys.NumPad2:
+						enemy.CurElement = Player.Element.Electricity;
+						break;
+					case Keys.NumPad3:
+						enemy.CurElement = Player.Element.Water;
 						break;
 				}
 			}

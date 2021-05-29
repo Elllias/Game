@@ -30,6 +30,14 @@ namespace Arena.Models
 
         public int HP;
         public bool IsAlive;
+        public Element CurElement;
+        public enum Element
+        {
+            Fire = 1,
+            Earth = 2,
+            Electricity = 3,
+            Water = 4
+        }
 
         public Player(int posX, int posY, int idleFrames, int runFrames, int attackFrames, int deathFrames, Image sprite)
         {
@@ -47,6 +55,7 @@ namespace Arena.Models
             Flip = 1;
             HP = 100;
             IsAlive = true;
+            CurElement = Element.Fire;
             // Размеры всех спрайтов
             Size = 50;
         }
@@ -145,6 +154,22 @@ namespace Arena.Models
             this.IsAlive = false;
             this.Speed = 0;
             this.SetAnimationConfiguration(3);
+        }
+
+        public bool IsWeak(Player enemy)
+        {
+            switch (CurElement)
+            {
+                case Element.Fire:
+                    return enemy.CurElement == Element.Earth;
+                case Element.Earth:
+                    return enemy.CurElement == Element.Electricity;
+                case Element.Electricity:
+                    return enemy.CurElement == Element.Water;
+                case Element.Water:
+                    return enemy.CurElement == Element.Fire;
+            }
+            return false;
         }
     }
 }
