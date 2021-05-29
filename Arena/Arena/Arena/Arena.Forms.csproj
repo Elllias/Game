@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arena.Models\Arena.Models.csproj">
-      <Project>{a364b0eb-8d66-4e69-9185-d56f77205ca5}</Project>
+      <Project>{085CDD55-9109-4819-A87F-3C0F9CFF09D8}</Project>
       <Name>Arena.Models</Name>
     </ProjectReference>
   </ItemGroup>

@@ -28,6 +28,9 @@ namespace Arena.Models
         public int DeathFrames;
         public int Size;
 
+        public int HP;
+        public bool IsAlive;
+
         public Player(int posX, int posY, int idleFrames, int runFrames, int attackFrames, int deathFrames, Image sprite)
         {
             PosX = posX;
@@ -42,15 +45,24 @@ namespace Arena.Models
             CurAnimation = 0;
             CurFrame = 0;
             Flip = 1;
+            HP = 100;
+            IsAlive = true;
             // Размеры всех спрайтов
             Size = 50;
         }
 
         public void Move()
         {
-            PosX += dX;
-            PosY += dY;
+            if (!Map.IsCollide(this, new Point(dX, dY)))
+            {
+                if (IsMoving)
+                {
+                    PosX += dX;
+                    PosY += dY;
+                }
+            }
         }
+
 
         public void SetAnimationConfiguration(int curAnimation)
         {
@@ -82,8 +94,57 @@ namespace Arena.Models
                 case 7:
                     CurLimit = this.DeathFrames;
                     break;
-
             }
+        }
+
+        public bool IsCollide(Player Enemy)
+        {
+                PointF delta = new PointF();
+                delta.X = (Enemy.PosX + Enemy.Size / 2) - (PosX + Size / 2);
+                delta.Y = (Enemy.PosY + Enemy.Size / 2) - (PosY + Size / 2);
+                if (Math.Abs(delta.X) <= (Enemy.Size / 2 + Size / 2) / 1.5)
+                {
+                    if (Math.Abs(delta.Y) <= (Enemy.Size / 2 + Size / 2) / 1.5)
+                    {
+                        if (delta.X < 0
+                            && Enemy.PosY + Enemy.Size / 2 > PosY
+                            && Enemy.PosY + Enemy.Size / 2 < PosY + Size)
+                        {
+                            return true;
+                        }
+                        if (delta.X > 0 
+                            && Enemy.PosY + Enemy.Size / 2 > PosY
+                            && Enemy.PosY + Enemy.Size / 2 < PosY + Size)
+                        {
+                            return true;
+                        }
+                        if (delta.Y < 0
+                            && Enemy.PosX + Enemy.Size / 2 > PosX
+                            && Enemy.PosX + Enemy.Size / 2 < PosX + Size)
+                        {
+                            return true;
+                        }
+                        if (delta.Y > 0
+                            && Enemy.PosX + Enemy.Size / 2 > PosX
+                            && Enemy.PosX + Enemy.Size / 2 < PosX + Size)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            return false;
+        }
+
+        public void GetDamage()
+        {
+            this.HP -= 10;
+        }
+
+        public void IsDead()
+        {
+            this.IsAlive = false;
+            this.Speed = 0;
+            this.SetAnimationConfiguration(3);
         }
     }
 }
