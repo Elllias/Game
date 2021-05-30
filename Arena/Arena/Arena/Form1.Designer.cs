@@ -50,23 +50,22 @@ namespace Arena
             // 
             this.HPPlayerBar.BackColor = System.Drawing.Color.FloralWhite;
             this.HPPlayerBar.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.HPPlayerBar.Location = new System.Drawing.Point(118, 45);
+            this.HPPlayerBar.Location = new System.Drawing.Point(720, 46);
             this.HPPlayerBar.Name = "HPPlayerBar";
             this.HPPlayerBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.HPPlayerBar.Size = new System.Drawing.Size(406, 25);
+            this.HPPlayerBar.Size = new System.Drawing.Size(404, 22);
             this.HPPlayerBar.TabIndex = 0;
             this.HPPlayerBar.Value = 100;
-            this.HPPlayerBar.Click += new System.EventHandler(this.HPPlayerBar_Click);
             // 
             // HPEnemyBar
             // 
             this.HPEnemyBar.BackColor = System.Drawing.SystemColors.MenuText;
             this.HPEnemyBar.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.HPEnemyBar.Location = new System.Drawing.Point(719, 45);
+            this.HPEnemyBar.Location = new System.Drawing.Point(118, 46);
             this.HPEnemyBar.Name = "HPEnemyBar";
             this.HPEnemyBar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.HPEnemyBar.RightToLeftLayout = true;
-            this.HPEnemyBar.Size = new System.Drawing.Size(406, 25);
+            this.HPEnemyBar.Size = new System.Drawing.Size(404, 22);
             this.HPEnemyBar.TabIndex = 1;
             this.HPEnemyBar.Value = 100;
             // 
@@ -77,7 +76,7 @@ namespace Arena
             this.labelPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelPlayer.Font = new System.Drawing.Font("Microsoft YaHei", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.labelPlayer.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.labelPlayer.Location = new System.Drawing.Point(156, 91);
+            this.labelPlayer.Location = new System.Drawing.Point(167, 91);
             this.labelPlayer.Name = "labelPlayer";
             this.labelPlayer.Size = new System.Drawing.Size(85, 19);
             this.labelPlayer.TabIndex = 3;
@@ -95,7 +94,7 @@ namespace Arena
             this.labelEnemy.BackColor = System.Drawing.Color.MidnightBlue;
             this.labelEnemy.Font = new System.Drawing.Font("Microsoft YaHei", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.labelEnemy.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.labelEnemy.Location = new System.Drawing.Point(1010, 91);
+            this.labelEnemy.Location = new System.Drawing.Point(1014, 91);
             this.labelEnemy.Name = "labelEnemy";
             this.labelEnemy.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelEnemy.Size = new System.Drawing.Size(89, 19);
@@ -105,7 +104,9 @@ namespace Arena
             // 
             // pictureBox1
             // 
-            this.pictureBox1.ImageLocation = "D:\\Ilyxa\\УЧЕБА\\Прога\\GAME\\GameForULearnCourse\\Arena\\Arena\\Arena\\Sprites\\1.png";
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.ImageLocation = "D:\\Ilyxa\\УЧЕБА\\Прога\\GAME\\GameForULearnCourse\\Arena\\Arena\\Arena\\Sprites\\HpBarHero" +
+    ".png";
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(526, 107);
@@ -114,7 +115,9 @@ namespace Arena
             // 
             // pictureBox2
             // 
-            this.pictureBox2.ImageLocation = "D:\\Ilyxa\\УЧЕБА\\Прога\\GAME\\GameForULearnCourse\\Arena\\Arena\\Arena\\Sprites\\2.png";
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.ImageLocation = "D:\\Ilyxa\\УЧЕБА\\Прога\\GAME\\GameForULearnCourse\\Arena\\Arena\\Arena\\Sprites\\HpBarEnem" +
+    "y.png";
             this.pictureBox2.Location = new System.Drawing.Point(706, 12);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(526, 107);

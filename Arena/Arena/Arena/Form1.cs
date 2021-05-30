@@ -2,7 +2,9 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace Arena
 {
@@ -10,7 +12,9 @@ namespace Arena
 	{
 		Player player;
 		Player enemy;
-		
+		MediaPlayer simpleSound;
+
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -19,8 +23,8 @@ namespace Arena
 			timer1.Tick += new EventHandler(Update);
 			KeyDown += new KeyEventHandler(OnKeyDown);
 			KeyUp += new KeyEventHandler(OnKeyUp);
-			pictureBox1.BackColor = Color.Transparent;
-			pictureBox2.BackColor = Color.Transparent;
+			SetSimpleSound();
+			simpleSound.Play();
 
 			Initialize();
 		}
@@ -159,28 +163,28 @@ namespace Arena
 					case Keys.Up:
 						enemy.IsMoving = true;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(1);
+							enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
 						else
-							enemy.SetAnimationConfiguration(5);
+							enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
 						enemy.dY = -enemy.Speed;
 						break;
 					case Keys.Left:
 						enemy.IsMoving = true;
-						enemy.SetAnimationConfiguration(5);
+						enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
 						enemy.Flip = -1;
 						enemy.dX = -enemy.Speed;
 						break;
 					case Keys.Down:
 						enemy.IsMoving = true;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(1);
+							enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
 						else
-							enemy.SetAnimationConfiguration(5);
+							enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
 						enemy.dY = enemy.Speed;
 						break;
 					case Keys.Right:
 						enemy.IsMoving = true;
-						enemy.SetAnimationConfiguration(1);
+						enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
 						enemy.dX = enemy.Speed;
 						enemy.Flip = 1;
 						break;
@@ -190,9 +194,9 @@ namespace Arena
 						enemy.dX = 0;
 						enemy.dY = 0;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(2);
+							enemy.SetAnimationConfiguration(2 + (int)enemy.CurElement);
 						else
-							enemy.SetAnimationConfiguration(6);
+							enemy.SetAnimationConfiguration(6 + (int)enemy.CurElement);
 						break;
 					case Keys.NumPad0:
 						enemy.CurElement = Player.Element.Fire;
@@ -219,11 +223,8 @@ namespace Arena
 			player.Move();
 			enemy.Move();
 
-
-			if (player.HP <= 100 && player.HP >= 0)
-				HPPlayerBar.Value = player.HP;
-			if (enemy.HP <= 100 && enemy.HP >= 0)
-				HPEnemyBar.Value = enemy.HP;
+			UpdateHpBar(player);
+			UpdateHpBar(enemy);
 
 			if (player.HP == 0)
 				player.IsDead();
@@ -231,6 +232,12 @@ namespace Arena
 				enemy.IsDead();
 
 			Invalidate();
+		}
+
+		private void UpdateHpBar(Player player)
+		{
+			if (player.HP <= 100 && player.HP >= 0)
+				HPPlayerBar.Value = player.HP;
 		}
 
 		private void OnPaint(object sender, PaintEventArgs e)
@@ -330,9 +337,11 @@ namespace Arena
 
 		}
 
-        private void HPPlayerBar_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+		private void SetSimpleSound()
+		{
+			simpleSound = new MediaPlayer();
+			simpleSound.Open(new Uri(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "music\\base.wav")));
+			simpleSound.Volume = 0.05;
+		}
+	}
 }
