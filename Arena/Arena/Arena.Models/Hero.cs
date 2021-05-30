@@ -13,7 +13,7 @@ namespace Arena.Models
         public static int IdleFrames = 5;
         public static int RunFrames = 7;
         public static int AttackFrames = 7;
-        public static int DeathFrames = 8;
+        public static int DeathFrames = 7;
 
         public static Image Icon = new Bitmap(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "Sprites\\Hero\\Frames.png"));
     }

@@ -72,7 +72,6 @@ namespace Arena.Models
             }
         }
 
-
         public void SetAnimationConfiguration(int curAnimation)
         {
             CurAnimation = curAnimation + (int)CurElement;

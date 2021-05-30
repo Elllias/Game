@@ -38,7 +38,7 @@ namespace Arena
 			labelEnemy.Text = "Fire";
 
 			player = new Player(130, 370, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, Hero.Icon);
-			enemy = new Player(1070, 420, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
+			enemy = new Player(130, 420, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
 
 			timer1.Start();
 		}
@@ -163,40 +163,40 @@ namespace Arena
 					case Keys.Up:
 						enemy.IsMoving = true;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(1);
 						else
-							enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(5);
 						enemy.dY = -enemy.Speed;
 						break;
 					case Keys.Left:
 						enemy.IsMoving = true;
-						enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
+						enemy.SetAnimationConfiguration(5);
 						enemy.Flip = -1;
 						enemy.dX = -enemy.Speed;
 						break;
 					case Keys.Down:
 						enemy.IsMoving = true;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(1);
 						else
-							enemy.SetAnimationConfiguration(5 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(5);
 						enemy.dY = enemy.Speed;
 						break;
 					case Keys.Right:
 						enemy.IsMoving = true;
-						enemy.SetAnimationConfiguration(1 + (int)enemy.CurElement);
+						enemy.SetAnimationConfiguration(1);
 						enemy.dX = enemy.Speed;
 						enemy.Flip = 1;
 						break;
 					case Keys.Enter:
-						if (player.IsCollide(enemy) && enemy.IsStronger(player))
+						if (enemy.IsCollide(player) && enemy.IsStronger(player))
 							player.GetDamage();
 						enemy.dX = 0;
 						enemy.dY = 0;
 						if (enemy.Flip == 1)
-							enemy.SetAnimationConfiguration(2 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(2);
 						else
-							enemy.SetAnimationConfiguration(6 + (int)enemy.CurElement);
+							enemy.SetAnimationConfiguration(6);
 						break;
 					case Keys.NumPad0:
 						enemy.CurElement = Player.Element.Fire;
@@ -223,8 +223,10 @@ namespace Arena
 			player.Move();
 			enemy.Move();
 
-			UpdateHpBar(player);
-			UpdateHpBar(enemy);
+			if (player.HP < 100 && player.HP >= 0)
+				HPPlayerBar.Value = player.HP;
+			if (enemy.HP < 100 && enemy.HP >= 0)
+				HPEnemyBar.Value = enemy.HP;
 
 			if (player.HP == 0)
 				player.IsDead();
@@ -234,13 +236,7 @@ namespace Arena
 			Invalidate();
 		}
 
-		private void UpdateHpBar(Player player)
-		{
-			if (player.HP <= 100 && player.HP >= 0)
-				HPPlayerBar.Value = player.HP;
-		}
-
-		private void OnPaint(object sender, PaintEventArgs e)
+		async private void OnPaint(object sender, PaintEventArgs e)
 		{
 			Graphics graphics = e.Graphics;
 
@@ -334,14 +330,13 @@ namespace Arena
 						new Rectangle(new Point(j * Map.CellSize, i * Map.CellSize), new Size(s1, s2)),
 						srcX, srcY, srcW, srcH, GraphicsUnit.Point);
 			Map.MapThings.Add(new Thing(new Point(j * Map.CellSize, i * Map.CellSize), new Size(s1, s2)));
-
 		}
 
 		private void SetSimpleSound()
 		{
 			simpleSound = new MediaPlayer();
 			simpleSound.Open(new Uri(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "music\\base.wav")));
-			simpleSound.Volume = 0.05;
+			simpleSound.Volume = 0.03;
 		}
 	}
 }
