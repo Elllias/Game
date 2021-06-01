@@ -62,9 +62,9 @@ namespace Arena.Models
             {
                 var curObject = Map.MapThings[i];
                 PointF delta = FindDelta(player, curObject);
-                if (Math.Abs(delta.X) <= player.Size / 2 + curObject.Size.Width / 2)
+                if (Math.Abs(delta.X) <= (player.Size / 2 + curObject.Size.Width / 2)/1.3)
                 {
-                    if (Math.Abs(delta.Y) <= player.Size / 2 + curObject.Size.Height / 2)
+                    if (Math.Abs(delta.Y) <= (player.Size / 2 + curObject.Size.Height / 2)/1.15)
                     {
                         if (delta.X < 0 && dir.X == player.Speed 
                             && player.PosY + player.Size / 2 > curObject.Position.Y 
@@ -98,9 +98,11 @@ namespace Arena.Models
 
         private static PointF FindDelta(Player player, Thing curObject)
         {
-            var delta = new PointF();
-            delta.X = (player.PosX + player.Size / 2) - (curObject.Position.X + curObject.Size.Width / 2);
-            delta.Y = (player.PosY + player.Size / 2) - (curObject.Position.Y + curObject.Size.Height / 2);
+            var delta = new PointF
+            {
+                X = (player.PosX + player.Size / 2) - (curObject.Position.X + curObject.Size.Width / 2),
+                Y = (player.PosY + player.Size / 2) - (curObject.Position.Y + curObject.Size.Height / 2)
+            };
             return delta;
         }
     }

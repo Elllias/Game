@@ -244,9 +244,11 @@ namespace Arena.Models
 
         private PointF FindDelta(Player enemy)
         {
-            var del = new PointF();
-            del.X = (enemy.PosX + enemy.Size / 2) - (PosX + Size / 2);
-            del.Y = (enemy.PosY + enemy.Size / 2) - (PosY + Size / 2);
+            var del = new PointF()
+            {
+                X = (enemy.PosX + enemy.Size / 2) - (PosX + Size / 2),
+                Y = (enemy.PosY + enemy.Size / 2) - (PosY + Size / 2)
+            };
             return del;
         }
     }

@@ -38,7 +38,7 @@ namespace Arena
 			labelEnemy.Text = "Fire";
 
 			player = new Player(130, 370, Hero.IdleFrames, Hero.RunFrames, Hero.AttackFrames, Hero.DeathFrames, Hero.Icon);
-			enemy = new Player(130, 420, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
+			enemy = new Player(1050, 420, Satyr.IdleFrames, Satyr.RunFrames, Satyr.AttackFrames, Satyr.DeathFrames, Satyr.Icon);
 
 			timer1.Start();
 		}
@@ -152,7 +152,6 @@ namespace Arena
 						player.CurElement = Player.Element.Water;
 						labelPlayer.Text = "Water";
 						break;
-
 				}
             }
 
@@ -229,14 +228,21 @@ namespace Arena
 				HPEnemyBar.Value = enemy.HP;
 
 			if (player.HP == 0)
+            {
 				player.IsDead();
+				pictureBox4.Visible = true;
+            }
+				
 			if (enemy.HP == 0)
+			{
 				enemy.IsDead();
+				pictureBox3.Visible = true;
+			}
 
 			Invalidate();
 		}
 
-		async private void OnPaint(object sender, PaintEventArgs e)
+		private void OnPaint(object sender, PaintEventArgs e)
 		{
 			Graphics graphics = e.Graphics;
 
@@ -338,5 +344,5 @@ namespace Arena
 			simpleSound.Open(new Uri(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName.ToString(), "music\\base.wav")));
 			simpleSound.Volume = 0.03;
 		}
-	}
+    }
 }
