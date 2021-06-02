@@ -14,12 +14,10 @@ namespace Arena
     public class GameTests
     {
         Image IconHero;
-        Image IconEnemy;
 
         [SetUp]
         public void SetUp()
         {
-            IconEnemy = new Bitmap(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).FullName.ToString(), "Sprites\\Satyr\\SatyrFrames.png"));
             IconHero = new Bitmap(Path.Combine(new DirectoryInfo(Directory.GetCurrentDirectory()).FullName.ToString(), "Sprites\\Hero\\Frames.png"));
         }
 
@@ -47,12 +45,14 @@ namespace Arena
             Assert.AreEqual(90, player.HP);
         }
 
-        [Test]
-        public void PlayerIsStongerWorkCorrect()
+        [TestCase (Player.Element.Earth, Player.Element.Fire)]
+        [TestCase (Player.Element.Fire, Player.Element.Water)]
+        public void PlayerIsStongerWorkCorrect(Player.Element element , Player.Element element1)
         {
             var player = CreatePlayer(50, 50);
             var enemy = CreatePlayer(0, 0);
-            enemy.CurElement = Player.Element.Earth;
+            player.CurElement = element1;
+            enemy.CurElement = element;
             Assert.AreEqual(true, player.IsStronger(enemy));
         }
 

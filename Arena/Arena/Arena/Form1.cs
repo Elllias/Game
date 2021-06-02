@@ -231,7 +231,7 @@ namespace Arena
             {
 				player.IsDead();
 				pictureBox4.Visible = true;
-            }
+			}
 				
 			if (enemy.HP == 0)
 			{
